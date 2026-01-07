@@ -1,0 +1,246 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>369 Ritual – 30 Tage</title>
+  <meta name="description" content="369 Schreib- und Lese-Ritual: 3× morgens, 6× mittags, 9× abends + 9× laut lesen. 30 Tage Tracking." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark">369</div>
+      <div class="brand-text">
+        <div class="title">369 Ritual</div>
+        <div class="subtitle">30 Tage • Schreiben & Lesen • gleiche Ziele</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button id="btnExport" class="btn btn-ghost" type="button">Export</button>
+      <label class="btn btn-ghost filelike" for="fileImport">Import</label>
+      <input id="fileImport" type="file" accept="application/json" />
+      <button id="btnReset" class="btn btn-danger" type="button">Reset</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- SETUP -->
+    <section class="panel panel-bg bg-setup" id="setupPanel" aria-labelledby="setupTitle">
+      <div class="panel-bgmedia" aria-hidden="true"></div>
+      <div class="panel-content">
+        <div class="panel-head">
+          <h2 id="setupTitle">Ziele (Ist-Form)</h2>
+          <p class="muted">1–3 Ziele. Immer die gleichen, 30 Tage lang. Kurz. Klar. Wortgleich.</p>
+        </div>
+
+        <form id="goalsForm" class="form">
+          <div class="field">
+            <label for="goal1">Ziel 1</label>
+            <input id="goal1" name="goal1" type="text" placeholder="z.B. Ich habe 10.000€ Monatsumsatz." maxlength="120" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="goal2">Ziel 2 (optional)</label>
+            <input id="goal2" name="goal2" type="text" placeholder="z.B. Ich bin fit und schmerzfrei." maxlength="120" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="goal3">Ziel 3 (optional)</label>
+            <input id="goal3" name="goal3" type="text" placeholder="z.B. Ich arbeite fokussiert 90 Minuten pro Tag." maxlength="120" autocomplete="off" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="startDate">Startdatum</label>
+              <input id="startDate" name="startDate" type="date" />
+            </div>
+            <div class="field">
+              <label for="duration">Dauer</label>
+              <select id="duration" name="duration">
+                <option value="30" selected>30 Tage</option>
+                <option value="21">21 Tage</option>
+                <option value="40">40 Tage</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label class="toggle">
+                <input id="caseSensitive" type="checkbox" />
+                <span>Groß-/Kleinschreibung strikt zählen</span>
+              </label>
+            </div>
+            <div class="field">
+              <label class="toggle">
+                <input id="strictPunctuation" type="checkbox" checked />
+                <span>Punkt/Komma strikt zählen</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Speichern & starten</button>
+          </div>
+
+          <div class="hint">
+            Tipp: Wenn du dich verschreibst, zählt es nicht. Das ist Absicht: Ritual = Präzision.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- TODAY -->
+    <section class="panel" id="todayPanel" aria-labelledby="todayTitle">
+      <div class="panel-head">
+        <div class="panel-head-row">
+          <h2 id="todayTitle">Heute</h2>
+          <div class="datebar">
+            <button id="btnPrevDay" class="btn btn-ghost" type="button" aria-label="Vorheriger Tag">◀</button>
+            <div class="datepill">
+              <div id="todayDateLabel" class="datepill-title">—</div>
+              <div id="dayIndexLabel" class="datepill-sub">—</div>
+            </div>
+            <button id="btnNextDay" class="btn btn-ghost" type="button" aria-label="Nächster Tag">▶</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Streak</div>
+            <div id="streakValue" class="stat-value">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Fertig</div>
+            <div id="doneCountValue" class="stat-value">0</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Tage</div>
+            <div id="totalDaysValue" class="stat-value">30</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="noGoalsBanner" class="banner banner-warn" hidden>
+        Keine Ziele gespeichert. Oben zuerst Ziele setzen.
+      </div>
+
+      <div class="sessions">
+        <!-- MORNING -->
+        <article class="session session-bg bg-morning" id="sessionMorning">
+          <div class="session-bgmedia" aria-hidden="true"></div>
+          <div class="session-content">
+            <div class="session-head">
+              <div>
+                <h3>Morgens</h3>
+                <p class="muted">Jedes Ziel 3× schreiben</p>
+              </div>
+              <div class="badge" id="badgeMorning">offen</div>
+            </div>
+            <div id="morningGoals" class="goal-list"></div>
+          </div>
+        </article>
+
+        <!-- NOON -->
+        <article class="session session-bg bg-noon" id="sessionNoon">
+          <div class="session-bgmedia" aria-hidden="true"></div>
+          <div class="session-content">
+            <div class="session-head">
+              <div>
+                <h3>Mittags</h3>
+                <p class="muted">Jedes Ziel 6× schreiben</p>
+              </div>
+              <div class="badge" id="badgeNoon">offen</div>
+            </div>
+            <div id="noonGoals" class="goal-list"></div>
+          </div>
+        </article>
+
+        <!-- EVENING -->
+        <article class="session session-bg bg-evening" id="sessionEvening">
+          <div class="session-bgmedia" aria-hidden="true"></div>
+          <div class="session-content">
+            <div class="session-head">
+              <div>
+                <h3>Abends</h3>
+                <p class="muted">Jedes Ziel 9× schreiben + 9× laut lesen</p>
+              </div>
+              <div class="badge" id="badgeEvening">offen</div>
+            </div>
+            <div id="eveningGoals" class="goal-list"></div>
+
+            <div class="loudread">
+              <div class="loudread-head">
+                <div>
+                  <div class="loudread-title">Laut gelesen</div>
+                  <div class="muted">9× laut (gesamt, für deine Ziele)</div>
+                </div>
+                <div class="counter">
+                  <button id="btnLoudMinus" class="btn btn-ghost" type="button">–</button>
+                  <div id="loudCount" class="counter-value">0 / 9</div>
+                  <button id="btnLoudPlus" class="btn btn-ghost" type="button">+</button>
+                </div>
+              </div>
+              <div class="actions">
+                <button id="btnMarkEveningDone" class="btn btn-primary" type="button">Abend abschließen</button>
+              </div>
+              <div class="hint">
+                Abends gilt erst als fertig, wenn Schreiben (9× pro Ziel) erledigt ist UND 9× laut gelesen.
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="panel" aria-labelledby="progressTitle">
+      <div class="panel-head">
+        <h2 id="progressTitle">30-Tage-Progress</h2>
+        <p class="muted">Ein Tag zählt als fertig, wenn Morgen + Mittag + Abend abgeschlossen sind.</p>
+      </div>
+
+      <div id="progressGrid" class="grid"></div>
+
+      <div class="progress-actions">
+        <button id="btnPrint" class="btn btn-ghost" type="button">Druckansicht (PDF)</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="muted">
+        Hinweis: Kein Heilversprechen. Das ist ein Fokus- und Wiederholungs-Tracker.
+      </div>
+    </footer>
+  </main>
+
+  <template id="goalCardTemplate">
+    <div class="goal-card">
+      <div class="goal-card-top">
+        <div class="goal-text"></div>
+        <div class="goal-meta">
+          <span class="goal-target"></span>
+          <span class="goal-status"></span>
+        </div>
+      </div>
+
+      <div class="goal-card-body">
+        <label class="muted small">Tippe den Satz exakt (zählt nur bei Match)</label>
+        <div class="goal-input-row">
+          <input class="goal-input" type="text" inputmode="text" autocomplete="off" spellcheck="false" />
+          <button class="btn btn-ghost goal-submit" type="button">Zählen</button>
+        </div>
+        <div class="goal-help muted small"></div>
+      </div>
+
+      <div class="goal-card-actions">
+        <button class="btn btn-ghost goal-undo" type="button">Rückgängig</button>
+        <button class="btn btn-ghost goal-clear" type="button">Löschen</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
