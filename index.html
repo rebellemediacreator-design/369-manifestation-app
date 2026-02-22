@@ -1,246 +1,242 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>369 Ritual – 30 Tage</title>
-  <meta name="description" content="369 Schreib- und Lese-Ritual: 3× morgens, 6× mittags, 9× abends + 9× laut lesen. 30 Tage Tracking." />
-  <link rel="stylesheet" href="./styles.css" />
+  <title>Der Dienstag für klare Grenzen – Klare Grenzen trotz Angst vor Ablehnung | 🖤 RE:BELLE™ Media</title>
+  <meta name="description" content="Psychologisch fundiertes E-Book-System für leistungsstarke Frauen: Grenzen setzen ohne Drama, mit Nervensystem-Regulation statt Willenskraft." />
+  <meta name="keywords" content="Grenzen setzen, People Pleasing, Fawn Response, Zurückweisungssensitivität, Nervensystem, Unternehmerinnen" />
+  <meta name="theme-color" content="#171320" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Der Dienstag für klare Grenzen" />
+  <meta property="og:description" content="Klare Grenzen trotz Angst vor Ablehnung – wissenschaftlich sauber, alltagstauglich und direkt umsetzbar." />
+  <meta property="og:site_name" content="🖤 RE:BELLE™ Media" />
+  <meta property="og:locale" content="de_DE" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="app-header">
-    <div class="brand">
-      <div class="brand-mark">369</div>
-      <div class="brand-text">
-        <div class="title">369 Ritual</div>
-        <div class="subtitle">30 Tage • Schreiben & Lesen • gleiche Ziele</div>
-      </div>
-    </div>
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
-    <div class="header-actions">
-      <button id="btnExport" class="btn btn-ghost" type="button">Export</button>
-      <label class="btn btn-ghost filelike" for="fileImport">Import</label>
-      <input id="fileImport" type="file" accept="application/json" />
-      <button id="btnReset" class="btn btn-danger" type="button">Reset</button>
+  <header class="hero" id="top">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <p class="hero-top">DER DIENSTAG FÜR KLARE GRENZEN</p>
+      <p class="hero-week">WOCHE <span id="weekLabel">10</span></p>
+      <h1>Du merkst es zuerst im Nacken. Nicht im Kopf.</h1>
+      <p class="hero-brand">🖤 RE:BELLE™ Media</p>
     </div>
   </header>
 
-  <main class="container">
-    <!-- SETUP -->
-    <section class="panel panel-bg bg-setup" id="setupPanel" aria-labelledby="setupTitle">
-      <div class="panel-bgmedia" aria-hidden="true"></div>
-      <div class="panel-content">
-        <div class="panel-head">
-          <h2 id="setupTitle">Ziele (Ist-Form)</h2>
-          <p class="muted">1–3 Ziele. Immer die gleichen, 30 Tage lang. Kurz. Klar. Wortgleich.</p>
-        </div>
+  <nav class="sticky-nav" aria-label="Inhaltsnavigation">
+    <a href="#versprechen">Versprechen</a>
+    <a href="#warnzeichen">Warnzeichen</a>
+    <a href="#neuro">Warum dein Körper reagiert</a>
+    <a href="#module">Kapitel</a>
+    <a href="#interaktiv">Interaktiv</a>
+    <a href="#zielgruppe">Für wen</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cta">Starten</a>
+  </nav>
 
-        <form id="goalsForm" class="form">
-          <div class="field">
-            <label for="goal1">Ziel 1</label>
-            <input id="goal1" name="goal1" type="text" placeholder="z.B. Ich habe 10.000€ Monatsumsatz." maxlength="120" autocomplete="off" />
-          </div>
-          <div class="field">
-            <label for="goal2">Ziel 2 (optional)</label>
-            <input id="goal2" name="goal2" type="text" placeholder="z.B. Ich bin fit und schmerzfrei." maxlength="120" autocomplete="off" />
-          </div>
-          <div class="field">
-            <label for="goal3">Ziel 3 (optional)</label>
-            <input id="goal3" name="goal3" type="text" placeholder="z.B. Ich arbeite fokussiert 90 Minuten pro Tag." maxlength="120" autocomplete="off" />
-          </div>
-
-          <div class="row">
-            <div class="field">
-              <label for="startDate">Startdatum</label>
-              <input id="startDate" name="startDate" type="date" />
-            </div>
-            <div class="field">
-              <label for="duration">Dauer</label>
-              <select id="duration" name="duration">
-                <option value="30" selected>30 Tage</option>
-                <option value="21">21 Tage</option>
-                <option value="40">40 Tage</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field">
-              <label class="toggle">
-                <input id="caseSensitive" type="checkbox" />
-                <span>Groß-/Kleinschreibung strikt zählen</span>
-              </label>
-            </div>
-            <div class="field">
-              <label class="toggle">
-                <input id="strictPunctuation" type="checkbox" checked />
-                <span>Punkt/Komma strikt zählen</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="actions">
-            <button class="btn btn-primary" type="submit">Speichern & starten</button>
-          </div>
-
-          <div class="hint">
-            Tipp: Wenn du dich verschreibst, zählt es nicht. Das ist Absicht: Ritual = Präzision.
-          </div>
-        </form>
-      </div>
+  <main id="inhalt" class="container">
+    <section id="versprechen" class="card intro">
+      <p class="eyebrow">Klares Versprechen</p>
+      <h2><span class="dropcap">D</span>eine Grenzen scheitern nicht an Disziplin – sie scheitern an einem Nervensystem, das Nähe mit Sicherheit verwechselt.</h2>
+      <p>Dieses System zeigt dir, wie du Nein sagst, ohne dich danach innerlich zu zerlegen. Kein esoterischer Überbau. Kein Motivationslärm. Nur klare psychologische Mechanismen, präzise Sprache und tägliche Mikro-Schritte, die in einen belastbaren Grenzmuskel einzahlen.</p>
     </section>
 
-    <!-- TODAY -->
-    <section class="panel" id="todayPanel" aria-labelledby="todayTitle">
-      <div class="panel-head">
-        <div class="panel-head-row">
-          <h2 id="todayTitle">Heute</h2>
-          <div class="datebar">
-            <button id="btnPrevDay" class="btn btn-ghost" type="button" aria-label="Vorheriger Tag">◀</button>
-            <div class="datepill">
-              <div id="todayDateLabel" class="datepill-title">—</div>
-              <div id="dayIndexLabel" class="datepill-sub">—</div>
-            </div>
-            <button id="btnNextDay" class="btn btn-ghost" type="button" aria-label="Nächster Tag">▶</button>
-          </div>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-label">Streak</div>
-            <div id="streakValue" class="stat-value">0</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Fertig</div>
-            <div id="doneCountValue" class="stat-value">0</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Tage</div>
-            <div id="totalDaysValue" class="stat-value">30</div>
-          </div>
-        </div>
-      </div>
-
-      <div id="noGoalsBanner" class="banner banner-warn" hidden>
-        Keine Ziele gespeichert. Oben zuerst Ziele setzen.
-      </div>
-
-      <div class="sessions">
-        <!-- MORNING -->
-        <article class="session session-bg bg-morning" id="sessionMorning">
-          <div class="session-bgmedia" aria-hidden="true"></div>
-          <div class="session-content">
-            <div class="session-head">
-              <div>
-                <h3>Morgens</h3>
-                <p class="muted">Jedes Ziel 3× schreiben</p>
-              </div>
-              <div class="badge" id="badgeMorning">offen</div>
-            </div>
-            <div id="morningGoals" class="goal-list"></div>
-          </div>
+    <section id="warnzeichen" class="card">
+      <h2>Wenn das auf dich zutrifft …</h2>
+      <div class="grid-three">
+        <article>
+          <h3>Mentale Signale</h3>
+          <ul>
+            <li>Du analysierst stundenlang eine Nachricht, statt eine Grenze in zwei Sätzen zu setzen.</li>
+            <li>Du erklärst dich zu Tode, obwohl ein klares Nein reicht.</li>
+            <li>Du nennst Anpassung „professionell", obwohl es Selbstverrat ist.</li>
+          </ul>
         </article>
-
-        <!-- NOON -->
-        <article class="session session-bg bg-noon" id="sessionNoon">
-          <div class="session-bgmedia" aria-hidden="true"></div>
-          <div class="session-content">
-            <div class="session-head">
-              <div>
-                <h3>Mittags</h3>
-                <p class="muted">Jedes Ziel 6× schreiben</p>
-              </div>
-              <div class="badge" id="badgeNoon">offen</div>
-            </div>
-            <div id="noonGoals" class="goal-list"></div>
-          </div>
+        <article>
+          <h3>Emotionale Signale</h3>
+          <ul>
+            <li>Schuld kippt sofort rein, sobald du jemandem nicht gefällst.</li>
+            <li>Du fürchtest Ablehnung stärker als Überlastung.</li>
+            <li>Du fühlst dich verantwortlich für die Stimmung anderer.</li>
+          </ul>
         </article>
-
-        <!-- EVENING -->
-        <article class="session session-bg bg-evening" id="sessionEvening">
-          <div class="session-bgmedia" aria-hidden="true"></div>
-          <div class="session-content">
-            <div class="session-head">
-              <div>
-                <h3>Abends</h3>
-                <p class="muted">Jedes Ziel 9× schreiben + 9× laut lesen</p>
-              </div>
-              <div class="badge" id="badgeEvening">offen</div>
-            </div>
-            <div id="eveningGoals" class="goal-list"></div>
-
-            <div class="loudread">
-              <div class="loudread-head">
-                <div>
-                  <div class="loudread-title">Laut gelesen</div>
-                  <div class="muted">9× laut (gesamt, für deine Ziele)</div>
-                </div>
-                <div class="counter">
-                  <button id="btnLoudMinus" class="btn btn-ghost" type="button">–</button>
-                  <div id="loudCount" class="counter-value">0 / 9</div>
-                  <button id="btnLoudPlus" class="btn btn-ghost" type="button">+</button>
-                </div>
-              </div>
-              <div class="actions">
-                <button id="btnMarkEveningDone" class="btn btn-primary" type="button">Abend abschließen</button>
-              </div>
-              <div class="hint">
-                Abends gilt erst als fertig, wenn Schreiben (9× pro Ziel) erledigt ist UND 9× laut gelesen.
-              </div>
-            </div>
-          </div>
+        <article>
+          <h3>Körperliche Signale</h3>
+          <ul>
+            <li>Nacken, Kiefer, Bauch reagieren schon vor dem Gespräch.</li>
+            <li>Du hältst den Atem an, wenn du dich abgrenzen willst.</li>
+            <li>Nach Konflikten bist du körperlich erschöpft statt geklärt.</li>
+          </ul>
         </article>
       </div>
     </section>
 
-    <!-- PROGRESS -->
-    <section class="panel" aria-labelledby="progressTitle">
-      <div class="panel-head">
-        <h2 id="progressTitle">30-Tage-Progress</h2>
-        <p class="muted">Ein Tag zählt als fertig, wenn Morgen + Mittag + Abend abgeschlossen sind.</p>
-      </div>
+    <section id="neuro" class="card">
+      <h2>Warum dein Körper so reagiert</h2>
+      <p>Soziale Ablehnung wird im Gehirn nicht wie ein neutraler Hinweis verarbeitet, sondern wie ein Bedrohungssignal. Darum reicht reines „Zusammenreißen" nicht. Dein System schaltet in Schutzprogramme: beschwichtigen, erklären, klein machen.</p>
+      <p>Das ist keine Charakterschwäche. Es ist erlernte Anpassung. Wenn du sie verstehst, kannst du sie überschreiben: durch klare Sprache, kurze Regulation und wiederholte Grenzhandlungen mit niedriger Eskalation.</p>
+    </section>
 
-      <div id="progressGrid" class="grid"></div>
-
-      <div class="progress-actions">
-        <button id="btnPrint" class="btn btn-ghost" type="button">Druckansicht (PDF)</button>
+    <section id="module" class="card">
+      <h2>Module / Kapitelübersicht</h2>
+      <div class="accordion" id="chapterAccordion">
+        <details open>
+          <summary>Kapitel 1–3: Bindung, Fawn-Response, Zurückweisungssensitivität</summary>
+          <p>Du verstehst, warum Hochleistung und People-Pleasing gleichzeitig auftreten können und wie Bindungsmuster dein Konfliktverhalten färben.</p>
+        </details>
+        <details>
+          <summary>Kapitel 4–5: Manipulationsmuster erkennen, ohne zu dramatisieren</summary>
+          <p>Typische Muster wie Schuldumkehr, subtile Entwertung und Druck durch Dringlichkeit. Klare Sprache statt Schuldzuweisung.</p>
+        </details>
+        <details>
+          <summary>Kapitel 6: Die 5 teuersten Grenzfehler</summary>
+          <p>Zu viel Rechtfertigung, fehlende Konsequenz, inkonsistente Signale, Timing-Fehler und spätes Reagieren.</p>
+        </details>
+        <details>
+          <summary>Kapitel 7: Satz-Formeln für heikle Situationen</summary>
+          <p>Business, Familie, Partnerschaft, Freundinnen: kurze Formeln, die respektvoll bleiben und trotzdem klar schließen.</p>
+        </details>
+        <details>
+          <summary>Kapitel 8: Somatische 90-Sekunden-Protokolle</summary>
+          <p>Mini-Übungen für Atem, Blick, Haltung und Tonlage, damit dein Nein nicht nur logisch, sondern verkörpert ist.</p>
+        </details>
+        <details>
+          <summary>Kapitel 9: 30-Tage-Umsetzungsplan</summary>
+          <p>Jeden Tag 5–10 Minuten: beobachten, formulieren, aussprechen, nachregulieren.</p>
+        </details>
+        <details>
+          <summary>Kapitel 10: Identität – von „nett" zu verlässlich klar</summary>
+          <p>Grenzen als Identitätsentscheidung: nicht gegen Menschen, sondern für Integrität, Fokus und Selbstrespekt.</p>
+        </details>
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="muted">
-        Hinweis: Kein Heilversprechen. Das ist ein Fokus- und Wiederholungs-Tracker.
+    <section id="interaktiv" class="card">
+      <h2>Interaktiver Bereich</h2>
+
+      <div class="tool-block">
+        <h3>Satz-Formeln finden</h3>
+        <div class="filter-row">
+          <label for="contextFilter">Kontext</label>
+          <select id="contextFilter">
+            <option value="alle">Alle</option>
+            <option value="business">Business</option>
+            <option value="familie">Familie</option>
+            <option value="partner">Partner</option>
+            <option value="freundinnen">Freundinnen</option>
+          </select>
+          <label for="formulaSearch">Suche</label>
+          <input id="formulaSearch" type="search" placeholder="z. B. Deadline, Besuch, Kritik" />
+        </div>
+        <ul id="formulaList" class="formula-list" aria-live="polite"></ul>
       </div>
-    </footer>
+
+      <div class="tool-block">
+        <h3>Checklisten</h3>
+        <div class="checklists">
+          <div>
+            <h4>Warnzeichen</h4>
+            <ul id="checkWarnzeichen" class="checklist"></ul>
+          </div>
+          <div>
+            <h4>Manipulationsmuster</h4>
+            <ul id="checkManipulation" class="checklist"></ul>
+          </div>
+          <div>
+            <h4>5 Grenzfehler</h4>
+            <ul id="checkFehler" class="checklist"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-block">
+        <h3>30-Tage-Plan (5–10 Minuten täglich)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tag</th><th>Fokus</th><th>Status</th></tr>
+            </thead>
+            <tbody id="planBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tool-block">
+        <h3>Mini-Selbsttest: People-Pleasing-Tendenz</h3>
+        <p class="muted">Orientierung, keine Diagnose.</p>
+        <form id="miniTest" class="test-grid"></form>
+        <button class="btn" id="evalTest" type="button">Auswertung anzeigen</button>
+        <p id="testResult" class="result" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="zielgruppe" class="card split">
+      <div>
+        <h2>Für wen</h2>
+        <ul>
+          <li>Für Frauen, die nach außen leistungsfähig sind und intern zu viel tragen.</li>
+          <li>Für Unternehmerinnen und Mütter mit hoher Verantwortung und wenig Puffer.</li>
+          <li>Für Menschen, die klare Sprache lernen wollen, ohne hart oder kalt zu wirken.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Für wen nicht</h2>
+        <ul>
+          <li>Nicht für Menschen, die nur neue Theorie sammeln wollen.</li>
+          <li>Nicht für „Tricks", um andere zu kontrollieren.</li>
+          <li>Nicht als Ersatz für therapeutische oder medizinische Behandlung.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="card">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Warum fühle ich Schuld, obwohl meine Grenze berechtigt ist?</summary>
+        <p>Weil dein System auf Beziehungs-Sicherung trainiert wurde. Schuld bedeutet nicht, dass deine Grenze falsch ist – oft nur, dass sie neu ist.</p>
+      </details>
+      <details>
+        <summary>Wie bleibe ich ruhig, wenn mein Gegenüber Druck macht?</summary>
+        <p>Kurzer Satz, langsamer Ausatem, kein Zusatzargument. Wiederhole die Grenze in gleicher Form. Ruhe entsteht durch Wiederholung, nicht durch perfekte Worte.</p>
+      </details>
+      <details>
+        <summary>Was, wenn jemand beleidigt reagiert?</summary>
+        <p>Gefühle anderer sind real, aber nicht automatisch deine Verantwortung. Du kannst respektvoll bleiben und trotzdem bei deiner Entscheidung bleiben.</p>
+      </details>
+    </section>
+
+    <section id="cta" class="card cta">
+      <h2>Hol dir das System für klare Grenzen</h2>
+      <p>Preis und Paketstufe setzt du später. Die Struktur steht: Wissen, Sprache, Körper, 30 Tage Umsetzung.</p>
+      <div class="cta-row">
+        <button class="btn">System holen</button>
+        <a class="btn ghost" href="#planBody">Zum Plan springen</a>
+        <a class="btn ghost" href="#formulaSearch">Satz-Formeln öffnen</a>
+      </div>
+      <p class="legal">Hinweis: Dieses Produkt ersetzt keine Therapie oder Diagnose. Bei Gewalt, Bedrohung oder akuter Gefahr nutze bitte sofort professionelle Hilfe und lokale Notfallstrukturen.</p>
+    </section>
   </main>
 
-  <template id="goalCardTemplate">
-    <div class="goal-card">
-      <div class="goal-card-top">
-        <div class="goal-text"></div>
-        <div class="goal-meta">
-          <span class="goal-target"></span>
-          <span class="goal-status"></span>
-        </div>
-      </div>
+  <footer class="site-footer">
+    <p>🖤 RE:BELLE™ Media — The Art of Feeling. Amplified.</p>
+    <ul>
+      <li><a href="https://newwomanintheshop.com" target="_blank" rel="noopener">newwomanintheshop.com</a></li>
+      <li><a href="https://rebellemedia.de" target="_blank" rel="noopener">rebellemedia.de</a></li>
+      <li><a href="https://portfolio.rebellemedia.de" target="_blank" rel="noopener">portfolio.rebellemedia.de</a></li>
+      <li><a href="https://www.newwomanintheshop.com/collections/re-belle%E2%84%A2-freebies-kein-schnickschnack-nur-wert" target="_blank" rel="noopener">🖤 RE:BELLE™ UNDERGROUND</a></li>
+      <li><a href="mailto:rebelle.media.creator@gmail.com">rebelle.media.creator@gmail.com</a></li>
+    </ul>
+  </footer>
 
-      <div class="goal-card-body">
-        <label class="muted small">Tippe den Satz exakt (zählt nur bei Match)</label>
-        <div class="goal-input-row">
-          <input class="goal-input" type="text" inputmode="text" autocomplete="off" spellcheck="false" />
-          <button class="btn btn-ghost goal-submit" type="button">Zählen</button>
-        </div>
-        <div class="goal-help muted small"></div>
-      </div>
-
-      <div class="goal-card-actions">
-        <button class="btn btn-ghost goal-undo" type="button">Rückgängig</button>
-        <button class="btn btn-ghost goal-clear" type="button">Löschen</button>
-      </div>
-    </div>
-  </template>
-
-  <script src="./app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
